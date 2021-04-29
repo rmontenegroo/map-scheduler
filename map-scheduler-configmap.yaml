@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  map-scheduler.yaml: |
+    test-0: kind-worker3
+    test-1: kind-worker2
+    test-2: kind-worker
+kind: ConfigMap
+metadata:
+  name: map-scheduler-configmap

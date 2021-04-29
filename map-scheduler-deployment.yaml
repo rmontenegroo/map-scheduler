@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: map-scheduler
+  labels:
+    app: map-scheduler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: map-scheduler
+  template:
+    metadata:
+      labels:
+        app: map-scheduler
+    spec:
+      containers:
+        - name: map-scheduler
+          image: map-scheduler:0.1
+          volumeMounts:
+          - name: config
+            mountPath: "/map-scheduler.yaml"
+            subPath: "map-scheduler.yaml"
+            readOnly: true
+      volumes:
+      - name: config
+        configMap:
+          name: map-scheduler-configmap
